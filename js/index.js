@@ -13,6 +13,7 @@ resetExpenseButton = document.getElementById("resetExpenseButton");
 let expenseName, expenseAmount, expenseCategory, expenseDate;
 const allExpense = [];
 const numberPettern = /^\d+$/
+// const existingLocalStorage =  localStorage.getItem("allExpense")
 
 
 // Form submission funciton 
@@ -44,17 +45,12 @@ expenseForm.addEventListener("submit", (event) => {
         allExpense.push(newExpenseObject)
 
         // set all expense array to the local storage 
-        if(localStorage.getItem("allExpense")){
-            return alert(" local storage has and item")
-        }
-        else{
-             setItem("allExpense", allExpense)
+    
 
+             setItem("allExpense", allExpense)
             // call function to set all expense to the dom 
             setAllExpenseToTheDom()
-        }
-
-
+  
 
         
     }
@@ -64,11 +60,9 @@ expenseForm.addEventListener("submit", (event) => {
         return alert("write something")
     }
 
-  
 
     
 })
-
 
 
 // function to set item to the localStorage 
@@ -86,6 +80,7 @@ function generateId(name){
 
 // function to set all expense to the dom 
 function setAllExpenseToTheDom(){
+
     const expensesFromLocalStorage = JSON.parse(localStorage.getItem("allExpense"))
     expenseBodyElement.innerHTML = ""
     expensesFromLocalStorage.forEach(expense => {
@@ -98,6 +93,9 @@ function setAllExpenseToTheDom(){
         `;
         expenseBodyElement.appendChild(tr)
     });
+ 
+
+   
 }
 
 

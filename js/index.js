@@ -1,3 +1,5 @@
+
+
 // Get all dom element 
 const expenseForm = document.getElementById("expenseForm"), 
 expenseNameElement = document.getElementById("expenseName"),
@@ -11,9 +13,9 @@ resetExpenseButton = document.getElementById("resetExpenseButton");
 
 // global variable 
 let expenseName, expenseAmount, expenseCategory, expenseDate;
-const allExpense = [];
+// const allExpense = [];
 const numberPettern = /^\d+$/
-// const existingLocalStorage =  localStorage.getItem("allExpense")
+let allExpense =  JSON.parse(localStorage.getItem("allExpense"))
 
 
 // Form submission funciton 
@@ -40,17 +42,22 @@ expenseForm.addEventListener("submit", (event) => {
             date : expenseDate,
 
         }
-        
-        // push new expense object to the all expense array 
-        allExpense.push(newExpenseObject)
 
-        // set all expense array to the local storage 
-    
-
-             setItem("allExpense", allExpense)
-            // call function to set all expense to the dom 
+        if(allExpense){
+            // allExpense = JSON.parse(allExpense)
+            console.log(allExpense);
+            allExpense.push(newExpenseObject)
+            localStorage.setItem("allExpense", allExpense)
             setAllExpenseToTheDom()
-  
+            // console.log("Loal storage has an item");
+        }else{
+            allExpense = []
+            allExpense.push(newExpenseObject)
+            localStorage.setItem("allExpense", JSON.stringify(allExpense))
+            setAllExpenseToTheDom()
+            // console.log("Loal storage has not any item");
+        }
+    
 
         
     }
@@ -80,10 +87,8 @@ function generateId(name){
 
 // function to set all expense to the dom 
 function setAllExpenseToTheDom(){
-
-    const expensesFromLocalStorage = JSON.parse(localStorage.getItem("allExpense"))
     expenseBodyElement.innerHTML = ""
-    expensesFromLocalStorage.forEach(expense => {
+    allExpense.forEach(expense => {
         const tr = document.createElement("tr")
         tr.innerHTML = `
             <td>${expense.name}</td>
@@ -101,4 +106,4 @@ function setAllExpenseToTheDom(){
 
 
 // set data to the dom in first load 
-setAllExpenseToTheDom()
+// setAllExpenseToTheDom()

@@ -16,7 +16,7 @@ let expenseName, expenseAmount, expenseCategory, expenseDate;
 // const allExpense = [];
 const numberPettern = /^\d+$/
 let allExpense =  JSON.parse(localStorage.getItem("allExpense"))
-console.log(allExpense, "from gloabal");
+
 
 
 // Form submission funciton 
@@ -43,18 +43,18 @@ expenseForm.addEventListener("submit", (event) => {
             date : expenseDate,
         }
 
+        // set array to the localStorage 
         if(!allExpense){
             allExpense = []
         }
         allExpense.push(newExpenseObject)
-        // localStorage.setItem("allExpense", JSON.stringify(allExpense))
         setItem("allExpense", allExpense)
         setAllExpenseToTheDom()        
     }
 
     // throw error with missing condition 
     else{
-        return alert("write something")
+        return alert("Make sure input validation!")
     }  
 })
 
@@ -67,14 +67,22 @@ function setItem(itemName, item){
 
 // generate unique id 
 function generateId(name){
-    const id = `expense${Math.floor(Math.random() * 1000000)}` 
+    const id = Math.floor(Math.random() * 1000000)
     return id
 }
 
 
 // edit expense function 
-function editExpense(event){
-    console.log(event.target.id);
+function editExpense(itemId){
+   
+}
+
+
+// delete expense functtion 
+function deleteExpense(itemId){
+    allExpense = allExpense.filter(expense => expense.id !== itemId)
+    setItem("allExpense", allExpense)
+    setAllExpenseToTheDom()
 }
 
 
@@ -91,14 +99,32 @@ function setAllExpenseToTheDom(){
                 <td>${expense.category}</td>
                 <td>${expense.date}</td>
                 <td>
-                    <button id="editButton">Edit</button>
-                    <button>Delete</button>
+                    <button id="editButton" onclick="editExpense(${expense.id})">Edit</button>
+                    <button id="deleteButton" onclick="deleteExpense(${expense.id})">Delete</button>
                 </td>
             `;
             expenseBodyElement.appendChild(tr)
+            
         });
     }
 }
+
+
+
+// function to edit item 
+// expenseBodyElement.addEventListener("click", (event) => {
+//     const id = event.target.getAttribute("id")
+//     if(id === 'editButton'){
+
+//         console.log(event.target.parentNode.parentNode);
+//     }
+// })
+
+
+
+
+
+
 
 
 

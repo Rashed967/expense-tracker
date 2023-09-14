@@ -1,3 +1,7 @@
+body{
+    background-color: antiquewhite;
+}
+
 
 table, th, td{
     border: 1px solid black;
@@ -6,4 +10,28 @@ table, th, td{
 
 th, td{
     padding: 7px 12px;
+}
+
+/* edit expense form div css  */
+
+#editExpenseSection{
+    width: 270px;
+    padding: 20px;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    background-color: rgb(255, 255, 255);
+}
+
+
+/* hide modal css */
+
+.hideModal{
+    display: none;
+}
+
+.showModal{
+    display: block;
 }

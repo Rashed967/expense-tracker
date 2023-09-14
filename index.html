@@ -53,6 +53,41 @@
     </div>
 
 
+    <div id="editExpenseSection" class="hideModal">
+        <h3>Edit Expense Data</h3>
+        <form id="editExpenseForm">
+            <input type="text" name="editExpenseName" id="editExpenseName" placeholder="Expense Name">
+            <br>
+            <br>
+            <input type="number" name="editExpenseAmount" id="editExpenseAmount" placeholder="Expense Amount">
+            <br>
+            <br>
+            <select name="editExpenseCategory" id="editExpenseCategory" >
+                <option value="option1">Expense Category</option>
+                <option value="option2">Food</option>
+                <option value="option3">Transportation</option>
+                <option value="option4">Housing</option>
+                <option value="option5">Pets</option>
+                <option value="option6">Savings Goals</option>
+                <option value="option7">Business Expenses</option>
+                <option value="option8">Entertainment </option>
+                <option value="option9">Healthcare </option>
+                <option value="option10">Subscriptions </option>
+                <option value="option11">Insurance </option>
+                <option value="option12">Utilities</option>
+            </select>
+            <br>
+            <br>
+            <input type="date" name="editExpenseDate" id="editExpenseDate">
+            <br>
+            <br>
+            <input type="submit" id="editSubmitExpenseButton" value="Submit">
+
+            <input type="button" id="cancelExpenseButton" value="Cencel">
+        </form>
+    </div>
+
+
     <script src="./js/index.js"></script>
 </body>
 </html>

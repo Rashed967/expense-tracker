@@ -8,15 +8,21 @@ expenseCategoryElement = document.getElementById("expenseCategory"),
 expenseDateElement = document.getElementById("expenseDate"),
 expenseBodyElement = document.getElementById("AllExpenses"),
 addExpenseButton =  document.getElementById("addExpenseButton"),
-resetExpenseButton = document.getElementById("resetExpenseButton");
+resetExpenseButton = document.getElementById("resetExpenseButton"),
+cancelExpenseButtonElement = document.getElementById("cancelExpenseButton"),
+editExpenseSectionElement = document.getElementById("editExpenseSection"),
+editSubmitExpenseButtonElement = document.getElementById("editSubmitExpenseButton"),
+editExpenseNameElement =  document.getElementById("editExpenseName"),
+editExpenseAmountElement = document.getElementById("editExpenseAmount"),
+editExpenseCategoryElement = document.getElementById("editExpenseCategory"),
+editExpenseDateElement = document.getElementById("editExpenseDate"),
+editExpenseFormElement = document.getElementById("editExpenseForm")
 
 
 // global variable 
 let expenseName, expenseAmount, expenseCategory, expenseDate;
-// const allExpense = [];
 const numberPettern = /^\d+$/
 let allExpense =  JSON.parse(localStorage.getItem("allExpense"))
-
 
 
 // Form submission funciton 
@@ -74,8 +80,54 @@ function generateId(name){
 
 // edit expense function 
 function editExpense(itemId){
-   
+    editExpenseSectionElement.classList.add("showModal")
+    editExpenseFormElement.addEventListener("submit", (event) =>{
+        event.preventDefault()
+
+        // object to changed 
+        let editExpenseName =  editExpenseNameElement.value;
+        let editExpenseAmount = editExpenseAmountElement.value;
+        let editExpenseCategory = editExpenseCategoryElement.options[editExpenseCategoryElement.selectedIndex].innerText
+        let editExpenseDate = editExpenseDateElement.value;
+
+
+        // checking form validation 
+        if(isNaN(editExpenseName) && editExpenseCategory !== "Expense Category" && editExpenseAmount > 0 && isNaN(editExpenseDate)){
+
+            // get index 
+            const findIndex = allExpense.findIndex(expense => expense.id === itemId)
+
+            // get element 
+            const editedElement = allExpense[findIndex]
+           
+
+            // changing prop value 
+            editedElement.name = editExpenseName;
+            editedElement.amount = editExpenseAmount;
+            editedElement.category = editExpenseCategory;
+            editedElement.date = editExpenseDate;
+
+
+            // allExpense.push(newExpenseObject)
+            setItem("allExpense", allExpense)
+            setAllExpenseToTheDom()        
+        }
+    
+        // throw error with missing condition 
+        else{
+            return alert("Make sure input validation!")
+        }  
+
+        editExpenseSectionElement.classList.remove("showModal")
+    })
 }
+
+
+// hide modal function 
+cancelExpenseButtonElement.addEventListener("click", () => {
+    editExpenseSectionElement.classList.remove("showModal")
+    
+})
 
 
 // delete expense functtion 
@@ -84,7 +136,6 @@ function deleteExpense(itemId){
     setItem("allExpense", allExpense)
     setAllExpenseToTheDom()
 }
-
 
 
 // function to set all expense to the dom 
@@ -108,23 +159,6 @@ function setAllExpenseToTheDom(){
         });
     }
 }
-
-
-
-// function to edit item 
-// expenseBodyElement.addEventListener("click", (event) => {
-//     const id = event.target.getAttribute("id")
-//     if(id === 'editButton'){
-
-//         console.log(event.target.parentNode.parentNode);
-//     }
-// })
-
-
-
-
-
-
 
 
 

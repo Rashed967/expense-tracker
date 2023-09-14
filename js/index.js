@@ -16,6 +16,7 @@ let expenseName, expenseAmount, expenseCategory, expenseDate;
 // const allExpense = [];
 const numberPettern = /^\d+$/
 let allExpense =  JSON.parse(localStorage.getItem("allExpense"))
+console.log(allExpense, "from gloabal");
 
 
 // Form submission funciton 
@@ -43,20 +44,12 @@ expenseForm.addEventListener("submit", (event) => {
 
         }
 
-        if(allExpense){
-            // allExpense = JSON.parse(allExpense)
-            console.log(allExpense);
-            allExpense.push(newExpenseObject)
-            localStorage.setItem("allExpense", allExpense)
-            setAllExpenseToTheDom()
-            // console.log("Loal storage has an item");
-        }else{
+        if(!allExpense){
             allExpense = []
-            allExpense.push(newExpenseObject)
-            localStorage.setItem("allExpense", JSON.stringify(allExpense))
-            setAllExpenseToTheDom()
-            // console.log("Loal storage has not any item");
         }
+        allExpense.push(newExpenseObject)
+        localStorage.setItem("allExpense", JSON.stringify(allExpense))
+        setAllExpenseToTheDom()
     
 
         
@@ -87,23 +80,23 @@ function generateId(name){
 
 // function to set all expense to the dom 
 function setAllExpenseToTheDom(){
-    expenseBodyElement.innerHTML = ""
-    allExpense.forEach(expense => {
-        const tr = document.createElement("tr")
-        tr.innerHTML = `
-            <td>${expense.name}</td>
-            <td>${expense.amount}$</td>
-            <td>${expense.category}</td>
-            <td>${expense.date}</td>
-        `;
-        expenseBodyElement.appendChild(tr)
-    });
- 
-
+    if(allExpense){
+        expenseBodyElement.innerHTML = ""
+        allExpense.forEach(expense => {
+            const tr = document.createElement("tr")
+            tr.innerHTML = `
+                <td>${expense.name}</td>
+                <td>${expense.amount}$</td>
+                <td>${expense.category}</td>
+                <td>${expense.date}</td>
+            `;
+            expenseBodyElement.appendChild(tr)
+        });
+    }
    
 }
 
 
 
 // set data to the dom in first load 
-// setAllExpenseToTheDom()
+setAllExpenseToTheDom()

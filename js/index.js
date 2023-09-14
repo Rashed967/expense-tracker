@@ -41,14 +41,14 @@ expenseForm.addEventListener("submit", (event) => {
             amount : expenseAmount,
             category : expenseCategory,
             date : expenseDate,
-
         }
 
         if(!allExpense){
             allExpense = []
         }
         allExpense.push(newExpenseObject)
-        localStorage.setItem("allExpense", JSON.stringify(allExpense))
+        // localStorage.setItem("allExpense", JSON.stringify(allExpense))
+        setItem("allExpense", allExpense)
         setAllExpenseToTheDom()        
     }
 
@@ -72,6 +72,13 @@ function generateId(name){
 }
 
 
+// edit expense function 
+function editExpense(event){
+    console.log(event.target.id);
+}
+
+
+
 // function to set all expense to the dom 
 function setAllExpenseToTheDom(){
     if(allExpense){
@@ -83,6 +90,10 @@ function setAllExpenseToTheDom(){
                 <td>${expense.amount}$</td>
                 <td>${expense.category}</td>
                 <td>${expense.date}</td>
+                <td>
+                    <button id="editButton">Edit</button>
+                    <button>Delete</button>
+                </td>
             `;
             expenseBodyElement.appendChild(tr)
         });

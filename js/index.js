@@ -49,19 +49,13 @@ expenseForm.addEventListener("submit", (event) => {
         }
         allExpense.push(newExpenseObject)
         localStorage.setItem("allExpense", JSON.stringify(allExpense))
-        setAllExpenseToTheDom()
-    
-
-        
+        setAllExpenseToTheDom()        
     }
 
     // throw error with missing condition 
     else{
         return alert("write something")
-    }
-
-
-    
+    }  
 })
 
 
@@ -93,7 +87,6 @@ function setAllExpenseToTheDom(){
             expenseBodyElement.appendChild(tr)
         });
     }
-   
 }
 
 

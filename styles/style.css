@@ -12,6 +12,13 @@ th, td{
     padding: 7px 12px;
 }
 
+.tableHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 650px;
+}
+
 /* edit expense form div css  */
 
 #editExpenseSection{

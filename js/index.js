@@ -16,7 +16,8 @@ editExpenseNameElement =  document.getElementById("editExpenseName"),
 editExpenseAmountElement = document.getElementById("editExpenseAmount"),
 editExpenseCategoryElement = document.getElementById("editExpenseCategory"),
 editExpenseDateElement = document.getElementById("editExpenseDate"),
-editExpenseFormElement = document.getElementById("editExpenseForm")
+editExpenseFormElement = document.getElementById("editExpenseForm"),
+deleteAllButtonElement = document.getElementById("deleteAllButton")
 
 
 // global variable 
@@ -136,6 +137,13 @@ function deleteExpense(itemId){
     setItem("allExpense", allExpense)
     setAllExpenseToTheDom()
 }
+
+// delete all expense function 
+deleteAllButtonElement.addEventListener("click", () => {
+    allExpense = []
+    setItem("allExpense", allExpense)
+    setAllExpenseToTheDom()
+})
 
 
 // function to set all expense to the dom 

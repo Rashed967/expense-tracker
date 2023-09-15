@@ -34,6 +34,8 @@
     </div>
 
     <br>
+    <!-- All Expense Report div  -->
+
     <div style="margin-top: 100px;">
         <div class="tableHeader">
             <div>
@@ -45,7 +47,10 @@
                 <button id="deleteAllButton">Clear all</button>
             </div>
         </div>
-        <!-- <div id="tableWraper"> -->
+        <div>
+            <p class="infoText">* Slide to show more columns</p>
+        </div>
+        <div id="tableWraper">
             <table>
                 <thead>
                     <tr>
@@ -60,19 +65,19 @@
         
                 </tbody>
             </table>
-        <!-- </div> -->
+        </div>
     </div>
 
+    <!-- Edit Expense Data div  -->
 
     <div id="editExpenseSection" class="hideModal">
+        <div>
         <h3>Edit Expense Data</h3>
         <form id="editExpenseForm">
             <input type="text" name="editExpenseName" id="editExpenseName" placeholder="Expense Name">
-            <br>
-            <br>
+
             <input type="number" name="editExpenseAmount" id="editExpenseAmount" placeholder="Expense Amount">
-            <br>
-            <br>
+
             <select name="editExpenseCategory" id="editExpenseCategory" >
                 <option value="option1">Expense Category</option>
                 <option value="option2">Food</option>
@@ -87,15 +92,15 @@
                 <option value="option11">Insurance </option>
                 <option value="option12">Utilities</option>
             </select>
-            <br>
-            <br>
+
             <input type="date" name="editExpenseDate" id="editExpenseDate">
-            <br>
-            <br>
+
+
             <input type="submit" id="editSubmitExpenseButton" value="Submit">
 
             <input type="button" id="cancelExpenseButton" value="Cencel">
         </form>
+        </div>
     </div>
 
 

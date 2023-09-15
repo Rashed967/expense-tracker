@@ -1,6 +1,6 @@
 
 
-// Get all dom element 
+// all dom element 
 const expenseForm = document.getElementById("expenseForm"), 
 expenseNameElement = document.getElementById("expenseName"),
 expenseAmountElement = document.getElementById("expenseAmount"),

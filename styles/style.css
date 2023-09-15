@@ -12,6 +12,10 @@ table, th, td{
     border-collapse: collapse;
 }
 
+table{
+    min-width: 710px;
+}
+
 th, td{
     padding: 7px 12px;
 }

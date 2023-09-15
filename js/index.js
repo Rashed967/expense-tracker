@@ -56,7 +56,8 @@ expenseForm.addEventListener("submit", (event) => {
         }
         allExpense.push(newExpenseObject)
         setItem("allExpense", allExpense)
-        setAllExpenseToTheDom()        
+        setAllExpenseToTheDom()  
+             
     }
 
     // throw error with missing condition 
@@ -111,7 +112,8 @@ function editExpense(itemId){
 
             // allExpense.push(newExpenseObject)
             setItem("allExpense", allExpense)
-            setAllExpenseToTheDom()        
+            setAllExpenseToTheDom()
+                 
         }
     
         // throw error with missing condition 
@@ -133,16 +135,22 @@ cancelExpenseButtonElement.addEventListener("click", () => {
 
 // delete expense functtion 
 function deleteExpense(itemId){
-    allExpense = allExpense.filter(expense => expense.id !== itemId)
+    if(confirm("Are you sure to delete!")){
+        allExpense = allExpense.filter(expense => expense.id !== itemId)
     setItem("allExpense", allExpense)
     setAllExpenseToTheDom()
+    }
+    
 }
 
 // delete all expense function 
 deleteAllButtonElement.addEventListener("click", () => {
-    allExpense = []
-    setItem("allExpense", allExpense)
-    setAllExpenseToTheDom()
+    if(confirm("You cannot back again if you delete")){
+
+        allExpense = []
+        setItem("allExpense", allExpense)
+        setAllExpenseToTheDom()
+    }
 })
 
 
